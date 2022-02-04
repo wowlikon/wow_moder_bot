@@ -5,7 +5,6 @@ import aiogram.utils.markdown as ftm
 from hashlib import *
 from filter import IsAdminFilter
 from PIL import Image
-from github import Github
 import os, math
 
 #Variables
