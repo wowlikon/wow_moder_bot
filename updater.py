@@ -13,5 +13,7 @@ for file in files:
 
 with io.open("requirements.txt", 'r') as i:
     for line in i.read().splitlines():
-        os.system("pip install " + line)
-        os.system("cls")
+        system("pip install " + line)
+        system("cls")
+
+mkdir("data")
