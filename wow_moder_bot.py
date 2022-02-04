@@ -9,10 +9,6 @@ import os, math
 
 #Variables
 from config import *
-with open("requirements.txt", 'r') as f:
-    for line in f.read().splitlines():
-        os.system("pip install " + line)
-        os.system("cls")
 
 #Functions
 def clamp(value, vmin, vmax):
