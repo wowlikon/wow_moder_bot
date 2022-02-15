@@ -45,6 +45,7 @@ inline_kb1 = types.InlineKeyboardMarkup().add(inline_btn_1)
 @dp.message_handler(commands=['report'], commands_prefix='!/')
 async def process_command_1(message: types.Message):
     count = await message.chat.get_member_count()
+    print(await message.chat.get_administrators())
     if message.reply_to_message:
         rep_us = "Пожаловаться на " + message.reply_to_message.from_user["first_name"]
         data =  str(message.chat.id) + 's' + str(message.reply_to_message.from_user.id) + 's' + str(count)
@@ -69,7 +70,16 @@ async def process_callback_button1(callback: types.CallbackQuery):
         print(rep)
     else:
         print("ban: ", data_en[1])
-        await bot.send_message(data_en[0], "BAN")
+        await bot.send_message(data_en[0], "BAN" + str(data_en[1]))
+
+        admins = await bot.get_chat_administrators(data_en[0])
+
+        for admin in admins:
+            if admin.status == "creator":
+                #return admin
+                print(admin)
+                await bot.send_message("ban", admin.user.id)
+
     await bot.send_message(callback.from_user.id, 'Жалоба отправлена!')
 
 @dp.message_handler(commands=['rand', 'random'], commands_prefix='!/')
